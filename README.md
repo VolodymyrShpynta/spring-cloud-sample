@@ -1,2 +1,1 @@
-### See articles:
-- [A Guide to Spring Cloud Netflix – Hystrix](http://www.baeldung.com/spring-cloud-netflix-hystrix)
+###Demo project for Spring Cloud
