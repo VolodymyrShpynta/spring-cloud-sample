@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: rest-producer
+
+server:
+  port: 0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
+# Actuator configuration to exposure /actuator/info, /actuator/health, /actuator/env
+management.endpoints.web.exposure.include: info, health, env
