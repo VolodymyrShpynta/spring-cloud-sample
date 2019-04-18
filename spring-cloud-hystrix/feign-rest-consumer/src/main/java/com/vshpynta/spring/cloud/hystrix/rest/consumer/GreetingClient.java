@@ -7,7 +7,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 
 @FeignClient(
         name = "rest-producer",
-        url = "http://localhost:9090",
         configuration = {GreetingClientContext.class},
         fallbackFactory = GreetingClientFallbackFactory.class)
 public interface GreetingClient extends GreetingController {

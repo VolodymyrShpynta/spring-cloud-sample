@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: feign-rest-consumer
+
+server:
+  port: 8080
+
+# Eureka config:
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+
+# Hystrix config:
+feign.hystrix.enabled: true
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 4000
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 2
+      # This setting only takes effect if you also set allowMaximumSizeToDivergeFromCoreSize=true.
+      # Note: in the current implementation (version 1.5.12) of HystrixThreadPoolDefault maximumSize have effect only if maxQueueSize=-1.
+      maximumSize: 3
+      allowMaximumSizeToDivergeFromCoreSize: true
+      # If coreSize < maximumSize, then this property controls how long a thread will go unused before being released
+      keepAliveTimeMinutes: 2
+      maxQueueSize: -1
+      # Note: Property 'queueSizeRejectionThreshold' doesn't have effect if maxQueueSize=-1
+      queueSizeRejectionThreshold: 5
+
+# Actuator configuration to exposure /actuator/hystrix.stream, /actuator/info, /actuator/health, /actuator/env
+management.endpoints.web.exposure.include: hystrix.stream, info, health, env

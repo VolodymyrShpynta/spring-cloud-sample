@@ -24,7 +24,7 @@ public class GreetingControllerImpl implements GreetingController {
 
     @Override
     public String greeting(@PathVariable("username") String username) {
-        simulateLongTermOperation();
+//        simulateLongTermOperation();
         return format("Hello %s, from %s!", username, eurekaClient.getApplication(appName).getName());
     }
 
