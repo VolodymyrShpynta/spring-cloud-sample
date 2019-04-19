@@ -14,6 +14,7 @@ eureka:
 # Hystrix config:
 feign.hystrix.enabled: true
 
+#This parameter defines timeout for whole request (including time waiting in the tasks queue if all threads in threadpool are busy)
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 4000
 
 hystrix:
@@ -32,7 +33,8 @@ hystrix:
 
 # Ribbon config:
 ribbon:
-  ReadTimeout: 4000
+  # This parameter defines timeout for direct call to thirdparty service (ignoring time waiting in tasks queue)
+  ReadTimeout: 3100
 
 # Actuator configuration to exposure /actuator/hystrix.stream, /actuator/info, /actuator/health, /actuator/env
 management.endpoints.web.exposure.include: hystrix.stream, info, health, env
