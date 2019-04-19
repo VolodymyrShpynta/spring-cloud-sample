@@ -30,5 +30,9 @@ hystrix:
       # Note: Property 'queueSizeRejectionThreshold' doesn't have effect if maxQueueSize=-1
       queueSizeRejectionThreshold: 5
 
+# Ribbon config:
+ribbon:
+  ReadTimeout: 4000
+
 # Actuator configuration to exposure /actuator/hystrix.stream, /actuator/info, /actuator/health, /actuator/env
 management.endpoints.web.exposure.include: hystrix.stream, info, health, env
