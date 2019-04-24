@@ -2,6 +2,11 @@
 - [Quick Intro to Spring Cloud Configuration](https://www.baeldung.com/spring-cloud-configuration)
 - [Dockerizing a Spring Boot Application](https://www.baeldung.com/dockerizing-spring-boot-application)
 
+We can retrieve the configuration for our planned config client running under development profile in branch master via: 
+```
+curl http://root:s3cr3t@localhost:8888/config-client/development/master
+```
+
 #### Encryption and Decryption
 **Requirement**: To use cryptographically strong keys together with Spring encryption and decryption features you need the ‘Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files’ installed in your JVM. These can be downloaded for example from [Oracle](https://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html). To install follow the instructions included in the download. Some Linux distributions also provide an installable package through their package managers.
 
