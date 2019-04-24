@@ -4,7 +4,7 @@
 
 We can retrieve the configuration for our planned config client running under development profile in branch master via: 
 ```
-curl http://root:s3cr3t@localhost:8888/config-client/development/master
+curl http://localhost:8888/config-client/development/master
 ```
 
 #### Encryption and Decryption
