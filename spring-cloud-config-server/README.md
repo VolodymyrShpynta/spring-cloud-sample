@@ -36,7 +36,7 @@ $> keytool -genkeypair -alias config-server-key \
        -keypass my-k34-s3cr3t -keystore config-server.jks \
        -storepass my-s70r3-s3cr3t
 ```
-After that, we’re adding the created keystore to our server’s application.properties and re-run it:
+After that, we’re adding the created keystore to our server’s bootstrap.yml and re-run it:
 
 ```
 encrypt.key-store.location=classpath:/config-server.jks

@@ -1,0 +1,7 @@
+# Encryption properties should be in bootstrap.yml. See https://cloud.spring.io/spring-cloud-static/Finchley.RELEASE/single/spring-cloud.html#_key_management
+encrypt:
+  key-store:
+    location: classpath:/config-server.jks
+    password: my-s70r3-s3cr3t
+    alias: config-server-key
+    secret: my-k34-s3cr3t
