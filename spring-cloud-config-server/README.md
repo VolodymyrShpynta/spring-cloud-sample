@@ -16,6 +16,14 @@ Since the config server is supporting encryption and decryption of property valu
 An endpoint to decrypt is also available. Both endpoints accept a path containing placeholders for the name of the application and its current profile: ‘/*/{name}/{profile}’. This is especially useful for controlling cryptography per client. However, before they become useful, you have to configure a cryptographic key which we will do in the next section.
 
 **Tip**: If you use curl to call the en-/decryption API, it’s better to use the –data-urlencode option (instead of –data/-d), or set the ‘Content-Type’ header explicit to ‘text/plain’. This ensures a correct handling of special characters like ‘+’ in the encrypted values.
+For example:
+```
+curl --header "Authorization: Basic cm9vdDpzM2NyM3Q=" \
+     --header "Content-Type: text/plain" \
+     --request POST \
+     --data 'pass123' \
+     http://localhost:8888/encrypt
+```
 
 If a value can’t be decrypted automatically while fetching through the client, its key is renamed with the name itself, prefixed by the word ‘invalid’. This should prevent, for example the usage of an encrypted value as password.
 
