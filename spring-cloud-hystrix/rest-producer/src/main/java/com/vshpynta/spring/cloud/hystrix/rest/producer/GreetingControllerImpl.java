@@ -31,7 +31,7 @@ public class GreetingControllerImpl implements GreetingController {
     @SneakyThrows
     private void simulateLongTermOperation() {
         log.info("Start simulating long term operation");
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         log.info("Finished simulating long term operation");
     }
 }

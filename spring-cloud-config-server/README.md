@@ -86,7 +86,7 @@ public class ConfigClient {
 A final query against our client will show us, if our configuration value is being correct decrypted:
 
 ```
-$> curl http://localhost:8080/whoami/Mr_Pink
+$> curl http://localhost:8081/whoami/Mr_Pink
 Hello! You're Mr_Pink and you'll become a(n) Developer, \
   but only if your password is 'd3v3L'!
 ```

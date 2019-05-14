@@ -2,8 +2,7 @@ spring:
   application:
     name: feign-rest-consumer
 
-server:
-  port: 8080
+server.port: 8080
 
 # Eureka config:
 eureka:
