@@ -1,3 +1,4 @@
+spring.application.name: CONFIGURATION-SERVICE
 server.port: 8888
 
 spring:
@@ -13,3 +14,9 @@ spring:
     user:
       name: root
       password: s3cr3t
+
+# Eureka config:
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}

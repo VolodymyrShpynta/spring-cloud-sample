@@ -1,6 +1,6 @@
 spring.application.name: config-client
 
-spring.profiles.active: development
+spring.profiles.include: development
 
 spring:
   cloud:
