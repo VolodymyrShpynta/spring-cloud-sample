@@ -4,8 +4,9 @@
 
 We can retrieve the configuration for our planned config client running under development profile in branch master via: 
 ```
-curl http://localhost:8888/config-client/development/master
+curl --header "Authorization: Basic cm9vdDpzM2NyM3Q=" http://localhost:8888/config-client/development/master
 ```
+NOTE: 'cm9vdDpzM2NyM3Q' - it is Base64 encoded 'root:s3cr3t' (username and password)
 
 #### Encryption and Decryption
 **Requirement**: To use cryptographically strong keys together with Spring encryption and decryption features you need the ‘Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files’ installed in your JVM. These can be downloaded for example from [Oracle](https://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html). To install follow the instructions included in the download. Some Linux distributions also provide an installable package through their package managers.
