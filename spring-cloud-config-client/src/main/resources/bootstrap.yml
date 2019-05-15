@@ -5,7 +5,15 @@ spring.profiles.include: development
 spring:
   cloud:
     config:
-      uri: http://localhost:8888
+      discovery:
+        enabled: true
+        service-id: CONFIGURATION-SERVICE
       username: root
       password: s3cr3t
       fail-fast: true
+
+# Eureka config:
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
