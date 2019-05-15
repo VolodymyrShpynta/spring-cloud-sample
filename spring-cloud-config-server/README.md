@@ -127,6 +127,8 @@ Build Docker image:
 docker build --file=Dockerfile \
      --tag=vshpynta/config-server:latest --rm=true .
 ```
+**NOTICE**: The –tag option will give the image its name and –rm=true will remove intermediate images after it has been built successfully. The last character in this shell command is a dot, acting as a build-directory argument.
+
 Run Docker Image:
 ```
 docker run --name=config-server --publish=8888:8888 \
