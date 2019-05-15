@@ -4,7 +4,7 @@
 
 We can retrieve the configuration for our planned config client running under development profile in branch master via: 
 ```
-curl --header "Authorization: Basic cm9vdDpzM2NyM3Q=" http://localhost:8888/config-client/development/master
+curl --header "Authorization: Basic cm9vdDpzM2NyM3Q=" http://localhost:8888/rest-producer/development/master
 ```
 NOTE: 'cm9vdDpzM2NyM3Q' - it is Base64 encoded 'root:s3cr3t' (username and password)
 
@@ -56,31 +56,42 @@ encrypt.key-store.secret=my-k34-s3cr3t
 As next step we can query the encryption-endpoint and add the response as value to a configuration in our repository:
 
 ```
-$> export PASSWORD=$(curl -X POST --data-urlencode d3v3L \
-       http://root:s3cr3t@localhost:8888/encrypt)
-$> echo "user.password=$PASSWORD" >> config-client-development.properties
+$> export PASSWORD=$(curl --header "Authorization: Basic cm9vdDpzM2NyM3Q=" \
+                          --header "Content-Type: text/plain" \
+                          --request POST \
+                          --data 'pass123' \
+                          http://localhost:8888/encrypt)
+$> echo "user.password=$PASSWORD" >> rest-producer-development.properties
 $> git commit -am 'Added encrypted password'
 $> curl -X POST http://root:s3cr3t@localhost:8888/refresh
 ```
-To test, if our setup works correctly, we’re modifying the ConfigClient class and restart our client:
+To test, if our setup works correctly, we’re modifying the GreetingControllerImpl class and restart our client:
 
 ```
-@SpringBootApplication
 @RestController
-public class ConfigClient {
- 
-    ...
-     
+@Slf4j
+public class GreetingControllerImpl implements GreetingController {
+
+    ......
+
+    @Value("${user.role}")
+    private String role;
+
     @Value("${user.password}")
     private String password;
- 
-    ...
-    public String whoami(@PathVariable("username") String username) {
-        return String.format("Hello! 
-          You're %s and you'll become a(n) %s, " +
-          "but only if your password is '%s'!\n", 
-          username, role, password);
+
+    @Value("${welcome.message}")
+    private String welcomeMessage;
+
+    @Override
+    public String greeting(@PathVariable("username") String username) {
+        simulateLongTermOperation();
+        return format(welcomeMessage,
+                username, role, password,
+                eurekaClient.getApplication(appName).getName());
     }
+
+    .....
 }
 ```
 A final query against our client will show us, if our configuration value is being correct decrypted:
@@ -98,7 +109,7 @@ The config server understands prefixes like {secret:my-crypto-secret} or {key:my
 
 ```
 user.password={cipher}{secret:my-499-s3cr3t}AgAMirj1DkQC0WjRv...
-user.password={cipher}{key:config-client-key}AgAMirj1DkQC0WjRv...
+user.password={cipher}{key:rest-producer-key}AgAMirj1DkQC0WjRv...
 ```
 For scenarios without keystore you have to implement a @Bean of type TextEncryptorLocator which handles the lookup and returns a TextEncryptor-Object for each key.
 
