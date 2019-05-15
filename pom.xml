@@ -9,8 +9,9 @@
     <modules>
         <module>spring-cloud-eureka-server</module>
         <module>spring-cloud-config-server</module>
-        <module>spring-cloud-hystrix</module>
         <module>spring-cloud-config-client</module>
+        <module>rest-producer</module>
+        <module>feign-rest-consumer</module>
     </modules>
     <packaging>pom</packaging>
 
