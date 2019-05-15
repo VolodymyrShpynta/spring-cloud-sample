@@ -130,6 +130,6 @@ docker build --file=Dockerfile \
 Run Docker Image:
 ```
 docker run --name=config-server --publish=8888:8888 \
-     -e "EUREKA_URI=http://10.63.22.137:8761/eureka" \
+     --env "EUREKA_URI=http://10.63.22.137:8761/eureka" \
      vshpynta/config-server:latest
 ```
