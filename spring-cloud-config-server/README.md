@@ -120,3 +120,16 @@ If you want to disable server-side cryptography and handle decryption of propert
 spring.cloud.config.server.encrypt.enabled=false
 ```
 Furthermore you can delete all the other ‘encrypt.*’ properties to disable the REST endpoints.
+
+### Run Config Server in Docker
+Build Docker image:
+```
+docker build --file=Dockerfile \
+     --tag=vshpynta/config-server:latest --rm=true .
+```
+Run Docker Image:
+```
+docker run --name=config-server --publish=8888:8888 \
+     -e "EUREKA_URI=http://10.63.22.137:8761/eureka" \
+     vshpynta/config-server:latest
+```
