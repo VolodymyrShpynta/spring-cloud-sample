@@ -1,0 +1,7 @@
+spring.application.name: rest-producer
+
+user:
+  role: developer
+  password: 123
+
+welcome.message: Hello!!!
