@@ -26,7 +26,7 @@ public class ConfigClient {
 
     @RequestMapping(value = "/whoami/{username}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
     public String whoami(@PathVariable("username") String username) {
-        return format("Hello %s! You are a(n) %s and your password is '%s'.\n", username, role, password);
+        return format("Hello %s! You are a(n) %s and your password is '%s'.", username, role, password);
     }
 }
 

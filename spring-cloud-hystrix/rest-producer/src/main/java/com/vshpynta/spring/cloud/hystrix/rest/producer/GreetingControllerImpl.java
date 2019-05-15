@@ -22,10 +22,21 @@ public class GreetingControllerImpl implements GreetingController {
     @Value("${spring.application.name}")
     private String appName;
 
+    @Value("${user.role}")
+    private String role;
+
+    @Value("${user.password}")
+    private String password;
+
+    @Value("${welcome.message}")
+    private String welcomeMessage;
+
     @Override
     public String greeting(@PathVariable("username") String username) {
         simulateLongTermOperation();
-        return format("Hello from %s, %s!", eurekaClient.getApplication(appName).getName(), username);
+        return format(welcomeMessage,
+                username, role, password,
+                eurekaClient.getApplication(appName).getName());
     }
 
     @SneakyThrows
