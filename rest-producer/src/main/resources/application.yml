@@ -1,4 +1,9 @@
 server.port: 0
 
+# This property should only be set in application.yml. Setting the value in bootstrap.yml causes undesirable side effects, such as registering in Eureka with an UNKNOWN status.
+# For more details see: https://cloud.spring.io/spring-cloud-netflix/multi/multi__service_discovery_eureka_clients.html#_eurekas_health_checks
+eureka.client.healthcheck.enabled: true
+
+# Use "*" to expose all endpoints, or a comma-separated list to expose selected ones
 # Actuator configuration to exposure /actuator/info, /actuator/health, /actuator/env
 management.endpoints.web.exposure.include: info, health, env

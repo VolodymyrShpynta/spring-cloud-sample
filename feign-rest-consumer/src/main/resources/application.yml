@@ -9,6 +9,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    healthcheck.enabled: true
 
 # Hystrix config:
 feign.hystrix.enabled: true
@@ -35,5 +36,6 @@ ribbon:
   # This parameter defines timeout for direct call to thirdparty service (ignoring time waiting in tasks queue)
   ReadTimeout: 3100
 
+# Use "*" to expose all endpoints, or a comma-separated list to expose selected ones
 # Actuator configuration to exposure /actuator/hystrix.stream, /actuator/info, /actuator/health, /actuator/env
 management.endpoints.web.exposure.include: hystrix.stream, info, health, env
