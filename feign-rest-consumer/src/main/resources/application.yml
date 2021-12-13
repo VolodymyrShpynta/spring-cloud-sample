@@ -14,7 +14,8 @@ eureka:
 # Hystrix config:
 feign.hystrix.enabled: true
 
-#This parameter defines timeout for whole request (including time waiting in the tasks queue if all threads in threadpool are busy)
+# This parameter defines timeout for whole request (including time waiting in the tasks queue if all threads in threadpool are busy)
+# For more details see https://cloud.spring.io/spring-cloud-netflix/multi/multi__hystrix_timeouts_and_ribbon_clients.html
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 4000
 
 hystrix:

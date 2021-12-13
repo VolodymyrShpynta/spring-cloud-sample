@@ -1,0 +1,38 @@
+version: '2'
+services:
+  eureka-server:
+    container_name: eureka-server
+    build:
+      context: ./spring-cloud-eureka-server
+      dockerfile: Dockerfile
+    image: eureka-server:latest
+    expose:
+      - 8888
+    networks:
+      - spring-cloud-network
+    logging:
+      driver: json-file
+  config-server:
+    container_name: config-server
+    build:
+      context: ./spring-cloud-config-server
+      dockerfile: Dockerfile
+    image: config-server:latest
+    entrypoint: /opt/spring-cloud/bin/config-client-entrypoint.sh
+    environment:
+      EUREKA_URI: http://eureka-server:8761/eureka
+    expose:
+      - 8761
+    ports:
+      - 8761:8761
+    networks:
+      - spring-cloud-network
+    links:
+      - eureka-server:eureka-server
+    depends_on:
+      - eureka-server
+    logging:
+      driver: json-file
+networks:
+  spring-cloud-network:
+    driver: bridge
